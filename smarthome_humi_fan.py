@@ -18,12 +18,12 @@ FAN = 21
 GPIO.setup(FAN,GPIO.OUT)
 
 while True:
-    h,t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, DHT) #온습도 측정 함수
+    h,t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, DHT) #온습도 측정
     print('Humidity =', h)
 
     if(h > 10):                   #습도 기준값 설정
-        GPIO.output(FAN,1)
-    else:
-        GPIO.output(FAN,0)
+        GPIO.output(FAN,1)        #습도 > 기준값: 팬 가동
+    else:                          
+        GPIO.output(FAN,0)        #습도 < 기준값: 팬 가동 중지
     #time.sleep(5)
     
